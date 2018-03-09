@@ -7,4 +7,9 @@ get '/' => sub {
     template 'index' => { 'title' => 'Sample' };
 };
 
+get '/rand' => sub {
+    my $rand = 1 + int rand(10);
+    return $rand;
+};
+
 true;
