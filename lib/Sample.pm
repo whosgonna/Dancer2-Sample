@@ -9,7 +9,10 @@ get '/' => sub {
 
 get '/rand' => sub {
     my $rand = 1 + int rand(10);
-    return $rand;
+    template 'rand' => {
+        random_var => $rand,
+        title      => 'Randomish'
+    };
 };
 
 true;

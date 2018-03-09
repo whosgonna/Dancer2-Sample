@@ -1,0 +1,5 @@
+<div id='page'>
+  <div id="content">
+    <p>Your randomly selected number between 1 and 10 is: <b><% random_var %></p>
+  </div>
+</div>  
