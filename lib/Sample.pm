@@ -15,4 +15,13 @@ get '/rand' => sub {
     };
 };
 
+get '/rand/:upper_limit' => sub {
+    my $max  = route_parameters->get('upper_limit');
+    my $rand = 1 + int rand($max);
+    template 'rand' => {
+        random_var => $rand,
+        title      => 'Randomish'
+    }
+};
+
 true;
