@@ -7,21 +7,17 @@ get '/' => sub {
     template 'index' => { 'title' => 'Sample' };
 };
 
-get '/rand' => sub {
-    my $rand = 1 + int rand(10);
-    template 'rand' => {
-        random_var => $rand,
-        title      => 'Randomish'
-    };
-};
+get '/rand'               => \&random;
+get '/rand/:upper_limit?' => \&random;
 
-get '/rand/:upper_limit' => sub {
-    my $max  = route_parameters->get('upper_limit');
+sub random {
+    my $max  = route_parameters->get('upper_limit') // 10;
     my $rand = 1 + int rand($max);
     template 'rand' => {
+        max        => $max,
         random_var => $rand,
         title      => 'Randomish'
     }
-};
+}
 
 true;
