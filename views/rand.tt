@@ -3,5 +3,6 @@
     <p>Your randomly selected number between 1 and <% max %> is: 
       <b><% random_var %></b>
     </p>
+    <p>The last randomly generated number was: <b><% last %></b></p>
   </div>
 </div>  
