@@ -10,6 +10,7 @@ get '/' => sub {
 
 get '/rand'               => \&random;
 get '/rand/:upper_limit?' => \&random;
+get 'history'             => \&history;
 
 sub random {
     my $max  = route_parameters->get('upper_limit') // 10;
@@ -28,4 +29,14 @@ sub random {
     }
 }
 
+sub history {
+    my $last10 = database->selectall_arrayref(
+        'SELECT * FROM numbers ORDER BY timestamp DESC LIMIT 10',
+        { Slice => {} }
+    );
+    template 'history' => {
+        history => $last10,
+        title   => 'Last 10 Results'
+    }
+}
 true;

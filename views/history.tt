@@ -1,0 +1,14 @@
+<div id='page'>
+  <div id="content">
+    <p>Here are the last 10 results:</p>
+      <table>
+        <tr><td>Number</td><td>Maximum</td></tr>
+        <% FOREACH row IN history %>
+          <tr>
+            <td><% row.num %></td>
+            <td><% row.max %></td>
+          </tr>
+        <% END %>
+      </table>
+  </div>
+</div>  
