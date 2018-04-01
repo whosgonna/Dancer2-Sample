@@ -16,6 +16,9 @@
 <body>
 <% content %>
 <div id="footer">
+  <% IF session.display_name %>
+    <p>You are currently connected as: <% session.display_name %>.</p>
+  <% END %>
 Powered by <a href="http://perldancer.org/">Dancer2</a> <% dancer_version %>
 </div>
 </body>

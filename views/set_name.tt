@@ -1,0 +1,10 @@
+<div id='page'>
+  <div id="content">
+    <form action='' method='post' id='set_name'>
+      <label for='name'>Set New Display Name:</label>
+      <input typeid='name' name='name' type='text' 
+        value='<% session.display_name %>' />
+      <button type="submit" form="set_name" value="Submit">Submit</button>
+    </form>
+  </div>
+</div>  

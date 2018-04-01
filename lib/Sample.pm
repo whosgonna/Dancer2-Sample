@@ -12,6 +12,9 @@ get '/rand'               => \&random;
 get '/rand/:upper_limit?' => \&random;
 get 'history'             => \&history;
 
+any [qw( get post )] => 'set_name' => \&set_name;
+
+
 sub random {
     my $max  = route_parameters->get('upper_limit') // 10;
     my $rand = 1 + int rand($max);
@@ -24,10 +27,11 @@ sub random {
     template 'rand' => {
         max        => $max,
         random_var => $rand,
-        last       => $last->{num},
+        lastq      => $last->{num},
         title      => 'Randomish'
     }
 }
+
 
 sub history {
     my $last10 = database->selectall_arrayref(
@@ -39,4 +43,19 @@ sub history {
         title   => 'Last 10 Results'
     }
 }
+
+
+sub set_name {
+    my $input_name = body_parameters->get('name');
+    
+    if ($input_name) {
+        session display_name => $input_name;
+    };
+    
+    template 'set_name' => {
+        title => 'Set Username',
+    };
+}
+
+
 true;
